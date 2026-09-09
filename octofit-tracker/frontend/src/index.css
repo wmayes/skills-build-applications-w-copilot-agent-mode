@@ -1,0 +1,7 @@
+* { box-sizing: border-box; }
+
+html { font-family: Arial, sans-serif; background: #f4f4ef; }
+
+body { min-width: 320px; margin: 0; }
+
+button, a { transition: color 160ms ease, background-color 160ms ease, border-color 160ms ease; }
