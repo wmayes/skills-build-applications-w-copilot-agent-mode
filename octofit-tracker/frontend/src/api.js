@@ -4,6 +4,13 @@ const codespaceHost = browserHost.replace(/-5173\.app\.github\.dev$/, '-8000.app
 const apiOrigin = configuredApiUrl || (codespaceHost !== browserHost ? `https://${codespaceHost}` : 'http://localhost:8000')
 
 export const API_BASE_URL = apiOrigin
+export const API_ENDPOINTS = {
+  users: '/api/users/',
+  teams: '/api/teams/',
+  activities: '/api/activities/',
+  leaderboard: '/api/leaderboard/',
+  workouts: '/api/workouts/',
+}
 
 function extractItems(payload) {
   if (Array.isArray(payload)) return payload
@@ -15,7 +22,9 @@ function extractItems(payload) {
 }
 
 export async function fetchCollection(component) {
-  const response = await fetch(`${API_BASE_URL}/api/${component}/`)
+  const endpoint = API_ENDPOINTS[component]
+  if (!endpoint) throw new Error(`Unknown API collection: ${component}`)
+  const response = await fetch(`${API_BASE_URL}${endpoint}`)
   if (!response.ok) throw new Error(`Unable to load ${component}.`)
   return extractItems(await response.json())
 }
