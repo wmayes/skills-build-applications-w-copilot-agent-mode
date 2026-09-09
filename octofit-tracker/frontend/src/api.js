@@ -21,8 +21,7 @@ function extractItems(payload) {
   return []
 }
 
-export async function fetchCollection(component) {
-  const endpoint = API_ENDPOINTS[component]
+export async function fetchCollection(component, endpoint = API_ENDPOINTS[component]) {
   if (!endpoint) throw new Error(`Unknown API collection: ${component}`)
   const response = await fetch(`${API_BASE_URL}${endpoint}`)
   if (!response.ok) throw new Error(`Unable to load ${component}.`)

@@ -2,16 +2,16 @@ import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 
 function Activities() {
-  return <CollectionPage title="Activities" endpoint="activities" columns={['Activity', 'User', 'Duration', 'Date']} />
+  return <CollectionPage title="Activities" endpoint="activities" apiEndpoint="/api/activities/" columns={['Activity', 'User', 'Duration', 'Date']} />
 }
 
-export function CollectionPage({ title, endpoint, columns }) {
+export function CollectionPage({ title, endpoint, apiEndpoint, columns }) {
   const [items, setItems] = useState([])
   const [state, setState] = useState('loading')
 
   useEffect(() => {
     let isCurrent = true
-    fetchCollection(endpoint)
+    fetchCollection(endpoint, apiEndpoint)
       .then((data) => {
         if (isCurrent) {
           setItems(data)
