@@ -30,7 +30,7 @@ export function CollectionPage({ title, endpoint, columns }) {
       {state === 'ready' && (
         <div className="table-wrap">
           <table className="data-table"><thead><tr>{columns.map((column) => <th key={column}>{column}</th>)}</tr></thead>
-            <tbody>{items.length ? items.map((item, index) => <tr key={item.id ?? item._id ?? index}>{columns.map((column) => <td key={column}>{formatValue(item, column)}</td>)}</tr>) : <tr><td className="empty" colSpan={columns.length}>No {title.toLowerCase()} recorded yet.</td></tr>}</tbody>
+            <tbody>{items.length ? items.map((item, index) => <tr key={item.id ?? item._id ?? index}>{columns.map((column) => <td key={column}>{formatValue(item, endpoint, column)}</td>)}</tr>) : <tr><td className="empty" colSpan={columns.length}>No {title.toLowerCase()} recorded yet.</td></tr>}</tbody>
           </table>
         </div>
       )}
@@ -38,7 +38,19 @@ export function CollectionPage({ title, endpoint, columns }) {
   )
 }
 
-function formatValue(item, column) {
+function formatValue(item, endpoint, column) {
+  const field = {
+    activities: { Activity: 'type', User: 'username', Duration: 'durationMinutes', Date: 'date' },
+    users: { Name: 'name', Email: 'email' },
+    teams: { Team: 'name', Members: 'members' },
+    leaderboard: { Name: 'username', Points: 'points', Rank: 'rank' },
+    workouts: { Workout: 'title', Type: 'focus', Difficulty: 'level', Duration: 'durationMinutes' },
+  }[endpoint]?.[column]
+  if (field) {
+    const value = item[field]
+    if (value !== undefined) return Array.isArray(value) ? value.join(', ') : String(value)
+  }
+  if ((column === 'Status')) return 'Active'
   const key = column.toLowerCase().replaceAll(' ', '')
   const value = item[column] ?? item[key] ?? item[column.toLowerCase()] ?? item.id ?? '—'
   return typeof value === 'object' ? JSON.stringify(value) : String(value)

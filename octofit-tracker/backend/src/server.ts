@@ -1,4 +1,6 @@
 import express from 'express';
+import './config/database.js';
+import { Activity, Leaderboard, Team, User, Workout } from './models.js';
 
 const app = express();
 const port = 8000;
@@ -32,24 +34,24 @@ app.get('/api/health', (_request, response) => {
   response.json({ status: 'ok' });
 });
 
-app.get('/api/users/', (_request, response) => {
-  response.json([]);
+app.get('/api/users/', async (_request, response) => {
+  response.json(await User.find().sort({ joinedAt: 1 }).lean());
 });
 
-app.get('/api/teams/', (_request, response) => {
-  response.json([]);
+app.get('/api/teams/', async (_request, response) => {
+  response.json(await Team.find().sort({ name: 1 }).lean());
 });
 
-app.get('/api/activities/', (_request, response) => {
-  response.json([]);
+app.get('/api/activities/', async (_request, response) => {
+  response.json(await Activity.find().sort({ date: -1 }).lean());
 });
 
-app.get('/api/leaderboard/', (_request, response) => {
-  response.json([]);
+app.get('/api/leaderboard/', async (_request, response) => {
+  response.json(await Leaderboard.find().sort({ rank: 1 }).lean());
 });
 
-app.get('/api/workouts/', (_request, response) => {
-  response.json([]);
+app.get('/api/workouts/', async (_request, response) => {
+  response.json(await Workout.find().sort({ title: 1 }).lean());
 });
 
 app.listen(port, () => {
