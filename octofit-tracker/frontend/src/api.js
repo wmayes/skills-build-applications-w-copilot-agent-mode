@@ -23,7 +23,8 @@ function extractItems(payload) {
 
 export async function fetchCollection(component, endpoint = API_ENDPOINTS[component]) {
   if (!endpoint) throw new Error(`Unknown API collection: ${component}`)
-  const response = await fetch(`${API_BASE_URL}${endpoint}`)
+  const path = endpoint.match(/\/api\/.*$/)?.[0] || endpoint
+  const response = await fetch(endpoint.startsWith('http') ? `${API_BASE_URL}${path}` : `${API_BASE_URL}${endpoint}`)
   if (!response.ok) throw new Error(`Unable to load ${component}.`)
   return extractItems(await response.json())
 }

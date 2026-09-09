@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 
 function Activities() {
-  return <CollectionPage title="Activities" endpoint="activities" apiEndpoint="/api/activities/" columns={['Activity', 'User', 'Duration', 'Date']} />
+  return <CollectionPage title="Activities" endpoint="activities" apiEndpoint={`https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/`} columns={['Activity', 'User', 'Duration', 'Date']} />
 }
 
 export function CollectionPage({ title, endpoint, apiEndpoint, columns }) {
