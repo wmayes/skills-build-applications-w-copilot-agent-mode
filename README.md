@@ -1,21 +1,14 @@
-# Build applications with GitHub Copilot agent mode
+# Build Applications with GitHub Copilot Agent Mode
 
-<!-- ![](../../actions/workflows/0-start-course.yml/badge.svg?branch=main) -->
-<img src="https://github.com/user-attachments/assets/1b3ea5df-f18d-4ed8-9ae6-f96dc1861818" alt="octofit-tracker" width="300"/>
+<img src="https://octodex.github.com/images/Professortocat_v2.png" align="right" height="200px" />
 
-_Build an application with GitHub Copilot agent mode in less than an hour._
+Hey wmayes!
 
-## Welcome
+Mona here. I'm done preparing your exercise. Hope you enjoy! 💚
 
-People love how GitHub Copilot helps them write code faster and with fewer errors.
-But what if GitHub could create a multi-tier application with a presentation, logic, and data layers based on requirements written in natural language?
-In this exercise, we will prompt GitHub Copilot agent mode to create a complete application.
+Remember, it's self-paced so feel free to take a break! ☕️
 
-- **Who is this for**: Intermediate developers familiar with GitHub Copilot, basic GitHub, and basic web development
-- **What you'll learn**: We'll introduce GitHub Copilot agent mode and how to use it for application development.
-- **What you'll build**: You'll use GitHub Copilot agent mode to create a fitness application as the gym teacher of a high school.
-- **Prerequisites**: Skills Exercise: <a href="https://github.com/skills/getting-started-with-github-copilot">Getting Started with GitHub Copilot</a>.
-- **How long**: This course takes less than one hour to complete.
+[![](https://img.shields.io/badge/Go%20to%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/wmayes/skills-build-applications-w-copilot-agent-mode/issues/1)
 
 In this exercise, you will:
 
