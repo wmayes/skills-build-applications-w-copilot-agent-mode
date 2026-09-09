@@ -1,7 +1,7 @@
-const codespaceName = import.meta.env.VITE_CODESPACE_NAME?.trim()
-const apiOrigin = codespaceName
-  ? `https://${codespaceName}-8000.app.github.dev`
-  : 'http://localhost:8000'
+const configuredApiUrl = import.meta.env.VITE_API_URL?.trim()
+const browserHost = typeof window !== 'undefined' ? window.location.hostname : ''
+const codespaceHost = browserHost.replace(/-5173\.app\.github\.dev$/, '-8000.app.github.dev')
+const apiOrigin = configuredApiUrl || (codespaceHost !== browserHost ? `https://${codespaceHost}` : 'http://localhost:8000')
 
 export const API_BASE_URL = apiOrigin
 
